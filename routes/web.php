@@ -45,7 +45,50 @@ Route::view('/welcome', 'welcome');
 Route::view('/welcome', 'welcome', ['name' => 'Damian']);
 //Llama a la vista welcome y además le pasa la variable name con valor Damian para que la use cuando quiera
 
-/*Podemos pasarle a las rutas tantos parámetros como queramos y podrían ser obligatorios u opcionales*/
-Route::get('/posts/{post}/comments/{comment}', function($postId, $commentId){
-    //
+/*Podemos pasarle a las rutas tantos parámetros como queramos y podrían ser obligatorios {} u opcionales {?}
+Esto podemos explicarlo con los siguientes ejemplos*/
+
+/*Parámetros obligatorios*/
+Route::get('/posts/{id}', function($id){
+    return "El ID del post es: " . $id;
 });
+/*Al visitar /posts/10 -> "El ID del post es: 10"
+Al visitar /posts/ -> ERROR
+*/
+
+Route::get('/posts/{postId}/comments/{commentId}', function($postId, $commentId){
+    return "Post ID: " . $postId . "Comment ID: " . $commentId;
+});
+/*Al visitar /posts/15/comments/24 -> "Post ID: 15 Comment ID: 24"
+Al visitar /posts/15/comments/ -> ERROR*/
+
+/*Parámetros opcionales*/
+//Con parametro null
+Route::get('/user/{name?}', function($name = null){
+    return $name ? "Hola, " . $name : "Hola, usuario desconocido";
+});
+/*Al visitar /user/Juan -> "Hola, Juan"
+Al visitar /user/ -> "Hola, usuario desconocido"
+*/
+
+//Con parámetro default
+Route::get('/user/{surname?}', function($surname = Munoz){
+    return "Hola, Damian" . $surname;
+});
+/*Al visitar /user/Gomez -> "Hola, Damian Gomez"
+Al visitar /user/ -> "Hola, Damian Munoz"
+*/
+
+//Múltiples parámetros opcionales
+Route::get('/profile/{name?}/{age?}/{city?}', function($name = "Damian", $age = 20, $city = null){
+    return "Nombre: $name, Edad: $age" . ", Ciudad: " . ($city ?? "No especificada"); //Otra forma de poner que es opcional
+});
+/*Al visitar /profile/Juan/25/Madrid -> Nombre: Juan, Edad: 25, Ciudad: Madrid
+Al visitar /profile/Juan/25/ -> Nombre: Juan, Edad: 25, Ciudad: No especificada
+Al visitar /profile/Juan//Madrid -> Nombre: Juan, Edad: 20, Ciudad: Madrid
+Al visitar /profile/ -> Nombre: Damian, Edad: 20, Ciudad: No especificada
+*/
+
+/*Para cargar una vista desde el controlasdor primero crearemos una ruta como la siguiente*/
+Route::get('/hola/{nombre}', 'HolaController@show');
+//Esto llamará a la función show() del controlador HolaController en /app/Http/Controllers
