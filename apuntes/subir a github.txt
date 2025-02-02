@@ -1,3 +1,7 @@
 Para subir y bajar este proyecto a github seguiremos los siguientes pasos:
 1º Entraremos en el directorio y haremos un git init para crear un repositorio local
 2º Hacemos git add . y git commit -m "Inicio"
+3º Añadimos el remoto con git remote origin https://github.com/damianmunozmunoz/guia-definitiva-laravel.git
+4º Escribimos git push y ya estaría
+5.1º Para descargarlos por primera vez clonaremos el repo con git clone https://github.com/damianmunozmunoz/guia-definitiva-laravel.git
+5.2º Si simplemente queremos actualizarlo en local usaremos git pull origin main
