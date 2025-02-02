@@ -1,0 +1,13 @@
+- /app: Aquí se guardan los modelos (programación pura)
+- /app/config: configuración de la aplicación
+- /app/http: peticiones http incluyendo los controladores (instanciación de objetos)
+- /database: migraciones y seeders (base de datos)
+- /public: directorio público donde laravel generará todo lo que hay que mover
+           al servidor para poner la web en producción y aquí se encuentra el
+           archivo index.php. Aquí se pueden crear carpetas para guardar imágenes,
+           scripts .js y .css
+- /storage: donde se guardan la caché, las sesiones, vistas, etc. ¡¡¡NO TOCAR ESTA CARPETA!!!
+- /resources: aquí se guardan las vistas y los demás assets (imágenes, .css y .js) pero
+              conviene guardar estos assets en /public menos las vistas
+- /vendors: librerías de terceros
+- composer.json: información para composer que sirve para instalar las librerías de terceros

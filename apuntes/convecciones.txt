@@ -1,0 +1,12 @@
+- Identificadores: siempre en inglés "User"
+- Modelos: igual que su correspondiente tabla de bd pero en singular y en CamelCase "RegisteredUser"
+- Controladores: como los modelos pero con la palabra controller "RegisteredUserController"
+- Métodos: se nombran en CamelCase empezando con minúscula "RegisteredUser::getAll()"
+- Atributos: se nombran en snake_case empezando con minúscula "RegisteredUser::first_name"
+- Variables: se nombran en CamelCase empezando con minúscula y en plural si se trata de una
+             colección "bannedUsers" y en singular si es un objeto o variable "articleContent"
+- Tablas: se nombran en snake_case y en plural "registered_users"
+- Columnas de las tablas: se nombran en snake_case "first_name"
+1. Clave primaria: se llamará siempre id, tipo integer y auto-increment
+2. Claves ajenas: se forman con el nombre de la tabla ajena en singular + _id "article_id"
+3. Timestamps: son marcas de tiempo de las tablas que se llaman created_at y updated_at de tipo datetime

@@ -1,0 +1,12 @@
+Primero debemos tener en cuenta el enrutador que captura las URL solicitadas y las traduce
+a invocaciones de métodos de los controladores.
+Por ejemplo, podemos pedirle al servidor una ruta como "hhtps://mi-servidor/user/delete/12"
+El enrutador troceará la URL para extraer los segmentos "user", "delete" y "12" y nosotros
+decidimos que hacer con ellos.
+Lo normal o intuitivo sería que se invocase el método delete() del controlador UserController
+y que ese método recibiera como parámeto el 12 que será el id del usuario a borrar.
+En la carpeta "/routes" se encuentran todas las rutas de la aplicación y su archivo por defecto
+es "web.php" que define las rutas para la interfaz web.
+A estas rutas se les asigna el grupo middleware web que proporciona características como el estado 
+de la sesión y la protección CSRF.
+Para ver la sintaxis y más información de las rutas mirar web.php.

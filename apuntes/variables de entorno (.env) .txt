@@ -1,0 +1,10 @@
+- APP_ENV: aquí se indica si la aplicación está en desarrollo o producción
+- APP_DEBUG: muestra los errores para depurar (true en desarrollo y false en producción)
+- APP_URL: url base de la aplicación
+- DB_CONNECTOIN, DB_HOST, etc: configuración de la conexión a la bd
+- Para usar esas variables usaremos la siguiente expresión
+    Ejemplo (/config/database.php): 'default' => env('DB_CONNECTION', 'mysql')
+    donde el 1º parámetro es la variable a consultar y el 2º el valor por defecto si la variable no existe
+- En el archivo .env.example nos viene una plantilla para que puedas construir
+  tu propio archivo .env
+- También tenemos un .env que será el que tome por defecto

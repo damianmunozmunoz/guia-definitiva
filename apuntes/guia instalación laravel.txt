@@ -1,0 +1,17 @@
+Instalamos composer:
+ https://getcomposer.org/download/
+ Añadimos en settings check la versión en la ruta C:\MAMP\bin\php\php8.3.1
+ Después le damos a next hasta el final y luego finish
+Instalamos node.js:
+ https://nodejs.org/en
+ Marcamos en tools for native modules lo de automatically install the necesary tools
+Vamos al archivo C:\MAMP\bin\php\php8.3.1\php.ini
+ Descomentamos las siguientes lineas:
+ - extension=fileinfo (941)
+ - extension=pdo_mysql (955)
+ - extension=pdo_sqlite (959)
+Abrimos git bash en nuestra carpeta asociada al servidor local del mamp
+ composer create-project laravel/laravel example-app
+Abrimos el proyecto en VSCode y abrimos su terminal
+ php artisan migrate:fresh (instala la BD)
+ php artisan serve (levantamos el servicio)
