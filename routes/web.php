@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 //Para crear una ruta hacian un controlador añadiremos el siguiente código
-Route::get('/hola', function(){
+Route::get('/hello', function(){
     return "Hola mundo";
 });
 /*La sintaxis será la siguiente
@@ -17,7 +17,7 @@ Route::get('ruta a partir del home /', function() {
 });
 */
 //Las funciones anónimas no se usan asi que en su lugar lo redirigiremos a un controlador
-Route::get('/adios', 'AdiosController@index');
+Route::get('/adios', 'AdiosController@index')->name('vistaadios');
 /*Donde la sintaxis será
 Route::get('ruta a partir del home /', Controlador@métododelcontrolador);
 * Podemos crear el controlador con php artisan make:controller AdiosController
@@ -90,5 +90,44 @@ Al visitar /profile/ -> Nombre: Damian, Edad: 20, Ciudad: No especificada
 */
 
 /*Para cargar una vista desde el controlasdor primero crearemos una ruta como la siguiente*/
-Route::get('/hola/{nombre}', 'HolaController@show');
+Route::get('/hola/{nombre?}', 'HolaController@show');
 //Esto llamará a la función show() del controlador HolaController en /app/Http/Controllers
+
+/*Podemos añadir nombres a nuestras rutas para que sea más facil llamarlas más adelante*/
+Route::get('/perfil', 'UserProfileController@show')->name('perfil');
+/*Ahora podremos referirnos a esta ruta como route('perfil')*/
+/*Aquí un ejemplo*/
+Route::get('/ines/{name?}/{age?}/{city?}', function($name = "Ines", $age = 21, $city = null){
+    return "Nombre: $name, Edad: $age" . ", Ciudad: " . ($city ?? "No especificada");
+})->name('ines');
+/*return redirect()->route('ines', [$name => 'Ines', $age => 21, $city => 'Zaragoza']);
+Esto podriamos ponerlo para redirigirnos directamente a una página con esta ruta*/
+//Podemos redirigir también de esta manera
+Route::redirect('/here', '/there');
+/*No podemos hacer formularios siguiendo los métodos de ruta PUT, PATCH o DELETE, solo GET y POST pero podemos
+poner lo siguiente:
+<form action="x" method="POST">
+    @method('DELETE')
+</form>
+*/
+/*¡¡¡IMPORTANTE!!! Si hay 2 rutas iguales como /profile/damian y /profile/{name} deberemos poner
+primero /profile/damian porque si no interpretará que damián es una variable de /profile/{name}*/
+
+// Operaciones REST para recurso user
+Route::get('user', 'UserController@index')->name('user.index'); 
+// Recupera todos los usuarios.
+Route::get('user/{user}', 'UserController@show')->name('user.show'); 
+// Recupera usuario con id=user.
+Route::get('user/crear', 'UserController@create')->name('user.create');
+// Lanza el formulario de creación de usuarios.
+Route::post('user/{user}', 'UserController@store')->name('user.store');
+// Recoge los datos del formulario y los inserta en la BD.
+Route::get('user/{user}/edit', 'UserController@edit')->name('user.edit');
+// Lanza el formulario de modificación de usuarios.
+Route::patch('user/{user}', 'UserController@update')->name('user.update'); 
+// Recoge los datos del formulario y modifica el usuario de la BD.
+Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy'); 
+// Elimina al usuario de la BD.
+//Hay que ser muy escrupuloso con los nombres y URLs de estas operaciones
+/*Todas estas lineas se pueden resumir simplemente poniendo la siguiente*/
+Route::resource('user');

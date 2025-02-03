@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class HolaController extends Controller
 {
     /*Aquí creamos un método show llamado en web.php pasandole el parámetro de ruta $nombre*/
-    public function show($nombre){
+    public function show($nombre = "Damian"){
         $data['nombre'] = $nombre;
         return view('hola', $data);
     }

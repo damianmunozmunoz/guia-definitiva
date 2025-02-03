@@ -1,0 +1,10 @@
+Responde a la arquitectura REST que es una forma de construir
+un servidor para que realice tareas de mantenimiento de recursos.
+Estos recursos pueden ser cualquier cosa que se almacene en
+el servidor (usuarios, clientes, productos, facturas, etc.)
+Normalmente son registros de la BD.
+El enrutador de un servidor RESTfull tendrá las 7 operaciones
+de REST para cada recurso accesible desde la red y que permiten manipular el recurso:
+- Mostrar   - Buscar    - Insertar  - Modificar - Borrar
+Para ver más en detalle como serían las rutas de un recurso user ejemplo
+miralo en web.php
