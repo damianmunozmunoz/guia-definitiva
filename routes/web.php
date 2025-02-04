@@ -17,7 +17,7 @@ Route::get('ruta a partir del home /', function() {
 });
 */
 //Las funciones anónimas no se usan asi que en su lugar lo redirigiremos a un controlador
-Route::get('/adios', 'AdiosController@index')->name('vistaadios');
+//Route::get('/adios', 'AdiosController@index')->name('vistaadios');
 /*Donde la sintaxis será
 Route::get('ruta a partir del home /', Controlador@métododelcontrolador);
 * Podemos crear el controlador con php artisan make:controller AdiosController
@@ -131,3 +131,14 @@ Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy');
 //Hay que ser muy escrupuloso con los nombres y URLs de estas operaciones
 /*Todas estas lineas se pueden resumir simplemente poniendo la siguiente*/
 Route::resource('user', 'UserController');
+
+/*Así le pasamos parámetros a la variable $name de la vista child.blade.php*/
+Route::get('/child', function () {
+    return view('child', ['name' => 'Damián']);
+});
+
+Route::get('/form', function(){
+    return view('formularios');
+});
+
+Route::post('/formulario', 'FormularioController@store')->name('formulario');

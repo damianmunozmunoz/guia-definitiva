@@ -1,0 +1,12 @@
+Las vistas de laravel están en /resources/views, emplean blade y acaban en .blade.php.
+Para pasar parámetros a una vista en una ruta o un controlador seguiremos esta sintaxis:
+return view('greeting', ['name' => 'Damian']);
+Blade es un motor de plantillas con algunas peculiaridades.
+La primera es que {{$name}} es equivalente a <?php echo $name;?>
+El master layout es el diseño maestro del que derivan todas las vistas
+y lo haremos en /resources/views/master.blade.php
+Para crearlo usaremos php artisan make:view master
+También podemos usar las estructuras propias de blade en vez de usar las de php nativo.
+Estas están explicadas en /resources/views/estructuras.blade.php
+Blade también facilita la creación de formularios.
+Estos se explican en /resources/views/formularios.blade.php
