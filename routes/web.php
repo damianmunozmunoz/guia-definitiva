@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Esta es la ruta creada por defecto que nos lleva a la url home (/)
 Route::get('/', function () {
     return view('welcome');
-});
+})/*->middleware(EnsureTokenIsValid::class)*/;
 
 //Para crear una ruta hacian un controlador añadiremos el siguiente código
 Route::get('/hello', function(){
@@ -30,7 +30,7 @@ Route::get('ruta a partir del home /', Controlador@métododelcontrolador);
 - delete: eliminar recursos del servidor. Ej.: eliminar un usuario de la bd
 Para emplear varios a la vez podemos especificar los que queremos con match o todos con any
 */
-Route::match(['get', 'post'], '/', function(){
+/*Route::match(['get', 'post'], '/', function(){
     //
 });
 
@@ -39,10 +39,10 @@ Route::any('/', function(){
 });
 
 /*Para cargar una vista en el controlador usaremos view*/
-Route::view('/welcome', 'welcome');
+/*Route::view('/welcome', 'welcome');
 //Llama a la vista con nombre welcome en /resources/views llamada welcome.blade.php
 
-Route::view('/welcome', 'welcome', ['name' => 'Damian']);
+/*Route::view('/welcome', 'welcome', ['name' => 'Damian']);
 //Llama a la vista welcome y además le pasa la variable name con valor Damian para que la use cuando quiera
 
 /*Podemos pasarle a las rutas tantos parámetros como queramos y podrían ser obligatorios {} u opcionales {?}
@@ -64,7 +64,7 @@ Al visitar /posts/15/comments/ -> ERROR*/
 
 /*Parámetros opcionales*/
 //Con parametro null
-Route::get('/user/{name?}', function($name = null){
+/*Route::get('/user/{name?}', function($name = null){
     return $name ? "Hola, " . $name : "Hola, usuario desconocido";
 });
 /*Al visitar /user/Juan -> "Hola, Juan"
@@ -72,7 +72,7 @@ Al visitar /user/ -> "Hola, usuario desconocido"
 */
 
 //Con parámetro default
-Route::get('/user/{surname?}', function($surname = Munoz){
+/*Route::get('/user/{surname?}', function($surname = Munoz){
     return "Hola, Damian" . $surname;
 });
 /*Al visitar /user/Gomez -> "Hola, Damian Gomez"
@@ -80,7 +80,7 @@ Al visitar /user/ -> "Hola, Damian Munoz"
 */
 
 //Múltiples parámetros opcionales
-Route::get('/profile/{name?}/{age?}/{city?}', function($name = "Damian", $age = 20, $city = null){
+/*Route::get('/profile/{name?}/{age?}/{city?}', function($name = "Damian", $age = 20, $city = null){
     return "Nombre: $name, Edad: $age" . ", Ciudad: " . ($city ?? "No especificada"); //Otra forma de poner que es opcional
 });
 /*Al visitar /profile/Juan/25/Madrid -> Nombre: Juan, Edad: 25, Ciudad: Madrid
@@ -90,20 +90,20 @@ Al visitar /profile/ -> Nombre: Damian, Edad: 20, Ciudad: No especificada
 */
 
 /*Para cargar una vista desde el controlasdor primero crearemos una ruta como la siguiente*/
-Route::get('/hola/{nombre?}', 'HolaController@show');
+//Route::get('/hola/{nombre?}', 'HolaController@show');
 //Esto llamará a la función show() del controlador HolaController en /app/Http/Controllers
 
 /*Podemos añadir nombres a nuestras rutas para que sea más facil llamarlas más adelante*/
-Route::get('/perfil', 'UserProfileController@show')->name('perfil');
+//Route::get('/perfil', 'UserProfileController@show')->name('perfil');
 /*Ahora podremos referirnos a esta ruta como route('perfil')*/
 /*Aquí un ejemplo*/
-Route::get('/ines/{name?}/{age?}/{city?}', function($name = "Ines", $age = 21, $city = null){
+/*Route::get('/ines/{name?}/{age?}/{city?}', function($name = "Ines", $age = 21, $city = null){
     return "Nombre: $name, Edad: $age" . ", Ciudad: " . ($city ?? "No especificada");
 })->name('ines');
 /*return redirect()->route('ines', [$name => 'Ines', $age => 21, $city => 'Zaragoza']);
 Esto podriamos ponerlo para redirigirnos directamente a una página con esta ruta*/
 //Podemos redirigir también de esta manera
-Route::redirect('/here', '/there');
+//Route::redirect('/here', '/there');
 /*No podemos hacer formularios siguiendo los métodos de ruta PUT, PATCH o DELETE, solo GET y POST pero podemos
 poner lo siguiente:
 <form action="x" method="POST">
@@ -114,7 +114,7 @@ poner lo siguiente:
 primero /profile/damian porque si no interpretará que damián es una variable de /profile/{name}*/
 
 // Operaciones REST para recurso user
-Route::get('user', 'UserController@index')->name('user.index'); 
+/*Route::get('user', 'UserController@index')->name('user.index'); 
 // Recupera todos los usuarios.
 Route::get('user/{user}', 'UserController@show')->name('user.show'); 
 // Recupera usuario con id=user.
@@ -130,4 +130,4 @@ Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy');
 // Elimina al usuario de la BD.
 //Hay que ser muy escrupuloso con los nombres y URLs de estas operaciones
 /*Todas estas lineas se pueden resumir simplemente poniendo la siguiente*/
-Route::resource('user');
+Route::resource('user', 'UserController');

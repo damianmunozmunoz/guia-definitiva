@@ -1,0 +1,12 @@
+Son los puntos de entrada de la aplicación desde el enrutador.
+Estos deben ser lo mas sencillos posibles, ni accesos a la bd ni código HTML.
+Para eso están los modelos y las vistas.
+Se escriben en singular y en CamelCase y terminando en la palabra Controller.
+Todos los métodos deberán terminar en return y lo que devuelva se convertirá
+en una respuesta HTTP excepto si es un array, en cuyo caso se convertirá en un .json.
+Se encuentran en /app/Http/Controllers y se crean con php artisan make:controller UserController.
+Este primer comando creará una estructura básica pero si queremos que lleve los métodos
+index(), create(), store(), show(), edit(), update() y destroy() usaremos el comando
+php artisan make:controller UserController --resource
+También podremos crear controladores que simplemente ejecutarán una única acción usando el comando
+php artisan make:controller ProvisionServer --invokable

@@ -1,7 +1,10 @@
 Automatiza muchas tareas con comandos que generan plantillas de archivos
 php artisan make:controller     hace un controlador
+php artisan make:controller UserController --resource hace un controlador con métodos REST
+php artisan make:controller ProvisionServer --invokable hace un controlador con __invokable()
 php artisan make:model          hace un modelo
 php artisan make:view           hace una vista
+php artisan make:middleware     hace un middleware
 php artisan make:seeder         hace un seeder
 php artisan make:migration      hace una migración
 php artisan list                lista los comandos disponibles

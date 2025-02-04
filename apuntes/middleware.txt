@@ -1,0 +1,9 @@
+Es un mecanismo para filtrar las solicitudes HTTP y se ponen en medio de las solicitudes
+del servidor.
+Un ejemplo de esto es auth, que verifica si el usuario está autenticado y tiene 2 opciones:
+- SI está autenticado entonces permitirá continuar a la aplicación
+- NO está autenticado entonces redigirá al usuario a la pantalla de inicio de sesión
+Para crear un nuevo middleware usaremos el siguiente comando
+php artisan make:middleware EnsureTokenIsValid
+Así se creará un controlador EnsureTokenIsValid en /app/Http/Middleware
+Además deberemos añadir el middleware en el archivo /bootstrap/app.php.
