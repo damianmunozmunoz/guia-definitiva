@@ -133,12 +133,17 @@ Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy');
 Route::resource('user', 'UserController');
 
 /*Así le pasamos parámetros a la variable $name de la vista child.blade.php*/
-Route::get('/child', function () {
+/*Route::get('/child', function () {
     return view('child', ['name' => 'Damián']);
-});
+});*/
 
 Route::get('/form', function(){
     return view('formularios');
 });
 
 Route::post('/formulario', 'FormularioController@store')->name('formulario');
+
+//Aquí se mostrará el formulario
+Route::get('/ejemploformulario', 'EjemploFormularioController@showForm')->name('ejemplo-formulario');
+//Aquí se redigirá al darle a submit
+Route::post('/ejemploformulario/store', 'EjemploFormularioController@storeData')->name('ejemplo-store');
