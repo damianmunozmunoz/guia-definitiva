@@ -1,0 +1,2 @@
+Cada vez que hagamos una acción contra la BD debemos indicar la conexión a que BD accedemos.
+También podemos hacer distintas acciones y todo esto se usará 
