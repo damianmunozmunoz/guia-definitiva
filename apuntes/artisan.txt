@@ -3,13 +3,16 @@ php artisan make:controller     hace un controlador
 php artisan make:controller UserController --resource hace un controlador con métodos REST
 php artisan make:controller ProvisionServer --invokable hace un controlador con __invokable()
 php artisan make:model          hace un modelo
+php artisan make:model Flight --migration hace un modelo y su migración
 php artisan make:view           hace una vista
 php artisan make:middleware     hace un middleware
 php artisan make:seeder         hace un seeder
 php artisan make:migration      hace una migración
 php artisan list                lista los comandos disponibles
 php arsitan migrate             realiza migraciónes
-php artisan db:seed             rellena los datos de nuestra bd
+php artisan db:seed             rellena los datos de nuestra bd en DatabaseSeeder.php
+php artisan db:seed --class=UserTableSeeder     rellena los datos de nuestra bd en UserTableSeeder.php
+php artisan migrate:fresh --seed [--seeder=UserTableSeeder]     rellena los datos al realizar una nueva migración
 php artisan route:list          muestra las rutas definidas
 php artisan key:generate        crea una clave de encriptación random que se guarda en el .env
                                 y sirve para cifrar algunas cosas como la contraseña del usuario

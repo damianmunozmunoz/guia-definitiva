@@ -1,2 +1,33 @@
-Cada vez que hagamos una acción contra la BD debemos indicar la conexión a que BD accedemos.
-También podemos hacer distintas acciones y todo esto se usará 
+Para conectar una base de datos a nuestro proyecto de laravel por defecto deberemos modificar
+las siguientes lineas del .env y dejarlas así:
+DB_CONNECTION=mysql         declara el lenguaje
+DB_HOST=127.0.0.1           declara el localhost
+DB_PORT=3306                declara el puerto
+DB_DATABASE=jardineria      declara la base de datos
+DB_USERNAME=root            declara el usuario
+DB_PASSWORD=root            declara la contraseña (si es MAMP) (si fuese XAMPP dejar esto vacio)
+
+Las funciones de la base de datos se escriben en un controlador y habrá uno por cada modelo (cada tabla)
+Las funciones básicas se crearán con php artisan make:controller UserController --resource
+Estas funciones están explicadas en /app/Http/Controllers/UserController.php
+
+Luego tenemos las migraciones que son como un control de versiones de las modificaciones de la BD
+Para crear una nueva migración usaremos php artisan make:migration create_flights_table
+Para ejecutar una nueva migración usaremos php artisan migrate
+Para hacer un rollback usaremos php artisan migrate:rollback
+Para deshacer todas las migraciones usaremos php artisan migrate:reset
+Para borrar todas las tablas y lanzar el migration php artisan migrate:fresh
+El resto de migraciones está explicado en migracion_de_prueba.php
+
+También si queremos meter datos de ejemplo en nuestra base de datos podemos usar los seeders (sembradores)
+que definen datos de ejemplo y se guardan en /database/seeders
+Estas se pueden llamar como sugerencia UsersTableSeeder
+Para crear un seeder podemos usar php artisan make:seeder UsersTableSeeder
+El resto de seeders está explicado en FlightsTableSeeder.php
+
+Los modelos se hacen con Eloquent, una librería que permite convertir los registros de la bd en objetos de nuestra aplicación
+Así, cuando los modifiques, borres o crees se ejecutará automáticamente el código SQL de esas operaciones.
+Laravel interpretará que la tabla se llama igual que el modelo solo que en minúscula y en plural Usuario (objeto) => usuarios (tabla)
+Para crear el modelo usaremos php artisan make:model Usuario y para hacer una migración de esa tabla será
+php artisan make:model Usuario --migration
+El resto de modelos está explicado en Flight.php

@@ -12,7 +12,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = DB::select('select * from clientes');
+
+        foreach($clientes as $cliente){
+            echo $cliente->name;
+        }
     }
 
     /**
